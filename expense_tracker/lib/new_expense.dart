@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 class NewExpense extends StatefulWidget {
   NewExpense(this.addToList, {super.key});
+  //pointing to func which can add
   void Function(Expense e) addToList;
   @override
   State<NewExpense> createState() {
@@ -76,12 +77,14 @@ class _NewExpenseState extends State<NewExpense> {
               ));
       return;
     }
+    //made a class holding that values. use that add method here and pass the class
     widget.addToList(Expense(
       title: _titleController.text.trim(),
       amount: enteredAmount,
       date: _selectedDate!,
       category: _selectCategory!,
     ));
+    //close the overlay after adding
     Navigator.pop(context);
   }
 
@@ -111,7 +114,10 @@ class _NewExpenseState extends State<NewExpense> {
                 child: TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  inputFormatters: [
+                    //formmating for 2 decimals (double input)
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))
+                  ],
                   decoration: const InputDecoration(
                       prefixText: '₹', label: Text('Amount')),
                 ),
@@ -189,7 +195,7 @@ class _NewExpenseState extends State<NewExpense> {
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

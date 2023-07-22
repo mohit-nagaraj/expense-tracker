@@ -28,7 +28,7 @@ class _ExpensesState extends State<Expenses> {
       category: Category.leisure,
     ),
   ];
-
+  //function to add to this list
   void addToList(Expense e) {
     setState(() {
       _registeredExpenses.add(e);
