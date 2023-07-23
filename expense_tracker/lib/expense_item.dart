@@ -7,12 +7,20 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+      elevation: 0,
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expense.title),
+            Text(
+              expense.title,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
             const SizedBox(height: 4),
             Row(
               children: [

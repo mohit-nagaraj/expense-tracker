@@ -135,12 +135,9 @@ class _NewExpenseState extends State<NewExpense> {
                       _selectedDate == null
                           ? 'Select date'
                           : formatter.format(_selectedDate!),
-                      style: TextStyle(
-                        color: Color.fromARGB(186, 0, 0, 0),
-                      ),
-                    ),
-                    style: TextButton.styleFrom(
-                      iconColor: Color.fromARGB(180, 0, 0, 0),
+                      //style: TextStyle(
+                      //color: Color.fromARGB(186, 0, 0, 0),
+                      //),
                     ),
                   )
                   /*
@@ -176,7 +173,7 @@ class _NewExpenseState extends State<NewExpense> {
                       });
                     }),
                 Spacer(),
-                ElevatedButton(
+                OutlinedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -188,9 +185,6 @@ class _NewExpenseState extends State<NewExpense> {
                 ElevatedButton(
                   onPressed: _submitExpenseData,
                   child: const Text('Submit'),
-                  //style: ElevatedButton.styleFrom(
-                  //  backgroundColor: Color.fromARGB(255, 178, 216, 223),
-                  //),
                 )
               ],
             ),

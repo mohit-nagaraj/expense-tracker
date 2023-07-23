@@ -1,3 +1,4 @@
+import 'package:expense_tracker/chart.dart';
 import 'package:expense_tracker/expense_list.dart';
 import 'package:expense_tracker/new_expense.dart';
 import 'package:flutter/material.dart';
@@ -16,16 +17,10 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
-      title: 'Flutter Course',
-      amount: 429.99,
+      title: 'Dummy expense! Swipe to remove',
+      amount: 0,
       date: DateTime.now(),
       category: Category.work,
-    ),
-    Expense(
-      title: 'Cinema',
-      amount: 350.00,
-      date: DateTime.now(),
-      category: Category.leisure,
     ),
   ];
   //function to add to this list
@@ -83,7 +78,7 @@ class _ExpensesState extends State<Expenses> {
         //crossAxisAlignment: CrossAxisAlignment.center, aligns wrt to its parent widget
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('The chart'),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: listScreen,
           ),
