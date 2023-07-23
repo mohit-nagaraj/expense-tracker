@@ -1,5 +1,4 @@
 import 'package:expense_tracker/capitalize.dart';
-import 'package:expense_tracker/expense_list.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,7 +34,7 @@ class _NewExpenseState extends State<NewExpense> {
 
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
-    bool validateAmount = enteredAmount == null || enteredAmount < 0;
+    bool validateAmount = enteredAmount == null || enteredAmount <= 0;
     if (_titleController.text.trim().isEmpty ||
         validateAmount ||
         _selectedDate == null ||
@@ -189,9 +188,9 @@ class _NewExpenseState extends State<NewExpense> {
                 ElevatedButton(
                   onPressed: _submitExpenseData,
                   child: const Text('Submit'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple[100],
-                  ),
+                  //style: ElevatedButton.styleFrom(
+                  //  backgroundColor: Color.fromARGB(255, 178, 216, 223),
+                  //),
                 )
               ],
             ),
