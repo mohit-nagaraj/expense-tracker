@@ -32,6 +32,7 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      useSafeArea: true,
       context: context,
       builder: (ctx) => NewExpense(addToList),
     );
@@ -59,11 +60,15 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     Widget listScreen = Center(child: Text('No expenses found. Start adding!'));
     if (_registeredExpenses.isNotEmpty) {
       listScreen =
           ExpenseList(expenses: _registeredExpenses, removeList: removeList);
     }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
@@ -74,16 +79,26 @@ class _ExpensesState extends State<Expenses> {
           )
         ],
       ),
-      body: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center, aligns wrt to its parent widget
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: listScreen,
-          ),
-        ],
-      ),
+      body: height > width
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: listScreen,
+                ),
+              ],
+            )
+          : Row(
+              //crossAxisAlignment: CrossAxisAlignment.center, aligns wrt to its parent widget
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(
+                  child: listScreen,
+                ),
+              ],
+            ),
     );
   }
 }
